@@ -7,7 +7,12 @@ const Home: React.FC = () => {
   const [repos, setRepos] = React.useState<any[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [darkMode, setDarkMode] = React.useState<boolean>(false);
   
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Searching for GitHub profile:', username);
@@ -50,8 +55,21 @@ const Home: React.FC = () => {
   };
   
   return (
-    <div className={styles.home}>
-      <h1 className={styles.title}>GitHub Profile Search</h1>
+    <div className={`${styles.home} ${darkMode ? styles.darkMode : ''}`}>
+      <header className={styles.header}>
+        <span>Dark Mode</span>
+        <label className={styles.toggleSwitch}>
+          <input 
+            type="checkbox" 
+            checked={darkMode}
+            onChange={toggleDarkMode}
+          />
+          <span className={styles.slider}></span>
+        </label>
+      </header>
+      
+      <section>
+      <h2 className={styles.title}>GitHub Profile Search</h2>
       <p className={styles.description}>
         Enter a GitHub username to search for profiles
       </p>
@@ -129,6 +147,7 @@ const Home: React.FC = () => {
           )}
         </div>
       )}
+      </section>
     </div>
   );
 };

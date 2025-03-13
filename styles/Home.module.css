@@ -1,10 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+/* Remove the body selector as it's not supported in CSS modules */
+/* Instead, we'll make the .home class handle the margin reset */
+
 .home {
   display: grid;
   place-items: start center;
-
   font-family: Arial, sans-serif;
+  width: 100%;
+  transition: background-color 0.3s, color 0.3s;
+  margin: 0; /* Added margin reset here */
+  min-height: 100vh;
+  margin-top: 50px;
+}
+
+.darkMode {
+  background-color: #222;
+  color: #f5f5f5;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  z-index: 10;
+}
+
+.toggleSwitch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #0070f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
 }
 
 .title {
@@ -85,6 +156,13 @@
   text-align: center;
   width: 600px; /* Wider card */
   max-width: 90vw;
+  background-color: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.darkMode .profile {
+  border-color: #444;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .profileHeader {
@@ -129,6 +207,10 @@
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
+}
+
+.darkMode .stats li {
+  background-color: #333;
 }
 
 .stats li:last-child {
@@ -186,6 +268,11 @@
   text-align: left;
 }
 
+.darkMode .repoItem {
+  border-color: #444;
+  background-color: #2a2a2a;
+}
+
 .repoItem a {
   color: #0070f3;
   font-weight: bold;
@@ -202,6 +289,10 @@
   color: #666;
 }
 
+.darkMode .repoItem p {
+  color: #aaa;
+}
+
 .repoStats {
   display: flex;
   gap: 1rem;
@@ -211,4 +302,8 @@
 .repoStats span {
   font-size: 0.8rem;
   color: #555;
+}
+
+.darkMode .repoStats span {
+  color: #bbb;
 }
