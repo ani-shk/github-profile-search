@@ -1,7 +1,14 @@
+/* =====================
+   1. IMPORTS & FONTS
+   ===================== */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* Remove the body selector as it's not supported in CSS modules */
-/* Instead, we'll make the .home class handle the margin reset */
+/* =====================
+   2. BASE & CONTAINER STYLES
+   ===================== */
+.container {
+  font-family: 'Roboto', sans-serif;
+}
 
 .home {
   display: grid;
@@ -9,11 +16,23 @@
   font-family: Arial, sans-serif;
   width: 100%;
   transition: background-color 0.3s, color 0.3s;
-  margin: 0; /* Added margin reset here */
+  margin: 0;
   min-height: 100vh;
   padding-top: 50px;
 }
 
+.mainSection {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =====================
+   3. THEME STYLES
+   ===================== */
 .darkMode {
   background-color: #222;
   color: #f5f5f5;
@@ -27,6 +46,36 @@
   color: #e0e0e0; /* Light gray for dark mode */
 }
 
+.darkMode .profile {
+  border-color: #444;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.darkMode .stats li {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.darkMode .repoItem {
+  border-color: #444;
+  background-color: #2a2a2a;
+}
+
+.darkMode .repoItem a {
+  color: #3a97ff; /* Brighter blue for links in dark mode */
+}
+
+.darkMode .repoItem p {
+  color: #ccc; /* Lighter gray for paragraph text in dark mode */
+}
+
+.darkMode .repoStats span {
+  color: #bbb;
+}
+
+/* =====================
+   4. HEADER & NAVIGATION
+   ===================== */
 .header {
   position: fixed;
   top: 0;
@@ -40,6 +89,54 @@
   z-index: 10;
 }
 
+/* =====================
+   5. TYPOGRAPHY
+   ===================== */
+.title {
+  font-size: 3rem;
+  color: #0070f3;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* =====================
+   6. FORM ELEMENTS
+   ===================== */
+.searchInput {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.searchButton {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 20px;
+}
+
+.searchButton:hover {
+  background-color: #005bb5;
+}
+
+.searchButton:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* =====================
+   7. TOGGLE SWITCH
+   ===================== */
 .toggleSwitch {
   position: relative;
   display: inline-block;
@@ -86,26 +183,17 @@ input:checked + .slider:before {
   transform: translateX(30px);
 }
 
-.title {
-  font-size: 3rem;
-  color: #0070f3;
-  margin-bottom: 1rem; /* Reduced margin */
-}
-
-.description {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 1rem; /* Reduced margin */
-}
-
+/* =====================
+   8. GRID & CARDS
+   ===================== */
 .grid {
   display: flex;
-  gap: 0.5rem; /* Reduced gap */
-  margin-top: 1rem; /* Reduced margin */
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .card {
-  padding: 1rem; /* Reduced padding */
+  padding: 1rem;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   text-align: center;
@@ -116,40 +204,12 @@ input:checked + .slider:before {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.container {
-  font-family: 'Roboto', sans-serif;
-}
-
+/* =====================
+   9. PROFILE COMPONENTS
+   ===================== */
 .avatar {
   border-radius: 50%;
-  margin-bottom: 1rem; /* Reduced margin */
-}
-
-.searchButton {
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin-left: 20px; /* Added margin */
-}
-
-.searchButton:hover {
-  background-color: #005bb5;
-}
-
-.searchButton:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}
-
-.searchInput {
-  padding: 0.75rem 1.5rem; /* Match button height */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 .profile {
@@ -162,15 +222,10 @@ input:checked + .slider:before {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   text-align: center;
-  width: 800px; /* Wider card */
+  width: 800px;
   max-width: 90vw;
   background-color: inherit;
   transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.darkMode .profile {
-  border-color: #444;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .profileHeader {
@@ -188,7 +243,7 @@ input:checked + .slider:before {
 
 .profile img {
   border-radius: 50%;
-  margin-bottom: 0; /* Remove bottom margin */
+  margin-bottom: 0;
 }
 
 .profile h2 {
@@ -199,6 +254,20 @@ input:checked + .slider:before {
   margin: 0.5rem 0;
 }
 
+.profileLink {
+  margin-top: 1rem;
+  color: #0070f3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.profileLink:hover {
+  text-decoration: underline;
+}
+
+/* =====================
+   10. STATS COMPONENTS
+   ===================== */
 .stats {
   list-style-type: none;
   padding: 0;
@@ -215,11 +284,6 @@ input:checked + .slider:before {
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
-}
-
-.darkMode .stats li {
-  background-color: #333;
-  color: #e0e0e0;
 }
 
 .stats li:last-child {
@@ -241,17 +305,9 @@ input:checked + .slider:before {
   color: white;
 }
 
-.profileLink {
-  margin-top: 1rem;
-  color: #0070f3;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.profileLink:hover {
-  text-decoration: underline;
-}
-
+/* =====================
+   11. REPOSITORY COMPONENTS
+   ===================== */
 .reposSection {
   width: 100%;
   margin-top: 1.5rem;
@@ -277,19 +333,10 @@ input:checked + .slider:before {
   text-align: left;
 }
 
-.darkMode .repoItem {
-  border-color: #444;
-  background-color: #2a2a2a;
-}
-
 .repoItem a {
   color: #0070f3;
   font-weight: bold;
   text-decoration: none;
-}
-
-.darkMode .repoItem a {
-  color: #3a97ff; /* Brighter blue for links in dark mode */
 }
 
 .repoItem a:hover {
@@ -302,10 +349,6 @@ input:checked + .slider:before {
   color: #666;
 }
 
-.darkMode .repoItem p {
-  color: #ccc; /* Lighter gray for paragraph text in dark mode */
-}
-
 .repoStats {
   display: flex;
   gap: 1rem;
@@ -315,17 +358,4 @@ input:checked + .slider:before {
 .repoStats span {
   font-size: 0.8rem;
   color: #555;
-}
-
-.darkMode .repoStats span {
-  color: #bbb;
-}
-
-.mainSection {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
