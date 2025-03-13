@@ -11,12 +11,20 @@
   transition: background-color 0.3s, color 0.3s;
   margin: 0; /* Added margin reset here */
   min-height: 100vh;
-  margin-top: 50px;
+  padding-top: 50px;
 }
 
 .darkMode {
   background-color: #222;
   color: #f5f5f5;
+}
+
+.darkMode .title {
+  color: #3a97ff; /* Brighter blue for dark mode */
+}
+
+.darkMode .description {
+  color: #e0e0e0; /* Light gray for dark mode */
 }
 
 .header {
@@ -79,7 +87,7 @@ input:checked + .slider:before {
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 3rem;
   color: #0070f3;
   margin-bottom: 1rem; /* Reduced margin */
 }
@@ -154,7 +162,7 @@ input:checked + .slider:before {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
   text-align: center;
-  width: 600px; /* Wider card */
+  width: 800px; /* Wider card */
   max-width: 90vw;
   background-color: inherit;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -211,6 +219,7 @@ input:checked + .slider:before {
 
 .darkMode .stats li {
   background-color: #333;
+  color: #e0e0e0;
 }
 
 .stats li:last-child {
@@ -279,6 +288,10 @@ input:checked + .slider:before {
   text-decoration: none;
 }
 
+.darkMode .repoItem a {
+  color: #3a97ff; /* Brighter blue for links in dark mode */
+}
+
 .repoItem a:hover {
   text-decoration: underline;
 }
@@ -290,7 +303,7 @@ input:checked + .slider:before {
 }
 
 .darkMode .repoItem p {
-  color: #aaa;
+  color: #ccc; /* Lighter gray for paragraph text in dark mode */
 }
 
 .repoStats {
@@ -306,4 +319,13 @@ input:checked + .slider:before {
 
 .darkMode .repoStats span {
   color: #bbb;
+}
+
+.mainSection {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -68,85 +68,85 @@ const Home: React.FC = () => {
         </label>
       </header>
       
-      <section>
-      <h2 className={styles.title}>GitHub Profile Search</h2>
-      <p className={styles.description}>
-        Enter a GitHub username to search for profiles
-      </p>
-      
-      <form onSubmit={handleSubmit} className={styles.searchForm}>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter GitHub username"
-          className={styles.searchInput}
-          required
-        />
-        <button type="submit" className={styles.searchButton} disabled={isLoading}>
-          {isLoading ? 'Searching...' : 'Search'}
-        </button>
-      </form>
-      
-      {isLoading && <p>Loading...</p>}
-      {error && <p className={styles.error}>Error: {error}</p>}
-      
-      {profile && !isLoading && (
-        <div className={styles.profile}>
-          <div className={styles.profileHeader}>
-            <img 
-              src={profile.avatar_url} 
-              alt={`${profile.login}'s avatar`} 
-              className={styles.avatar}
-              width={100}
-              height={100}
-            />
-            <div className={styles.profileInfo}>
-              <h2>{profile.name || profile.login}</h2>
-              {profile.bio && <p>{profile.bio}</p>}
+      <section className={styles.mainSection}>
+        <h3 className={styles.title}>GitHub Profile Search</h3>
+        <p className={styles.description}>
+          Enter a GitHub username to search for profiles
+        </p>
+        
+        <form onSubmit={handleSubmit} className={styles.searchForm}>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Enter GitHub username"
+            className={styles.searchInput}
+            required
+          />
+          <button type="submit" className={styles.searchButton} disabled={isLoading}>
+            {isLoading ? 'Searching...' : 'Search'}
+          </button>
+        </form>
+        
+        {isLoading && <p>Loading...</p>}
+        {error && <p className={styles.error}>Error: {error}</p>}
+        
+        {profile && !isLoading && (
+          <div className={styles.profile}>
+            <div className={styles.profileHeader}>
+              <img 
+                src={profile.avatar_url} 
+                alt={`${profile.login}'s avatar`} 
+                className={styles.avatar}
+                width={100}
+                height={100}
+              />
+              <div className={styles.profileInfo}>
+                <h2>{profile.name || profile.login}</h2>
+                {profile.bio && <p>{profile.bio}</p>}
+              </div>
             </div>
+            
+            <ul className={styles.stats}>
+              <li>Followers: {profile.followers}</li>
+              <li>Following: {profile.following}</li>
+              <li>Public repos: {profile.public_repos}</li>
+              <li className={styles.profileBtn}>
+                <a 
+                  href={profile.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Profile
+                </a>
+              </li>
+            </ul>
+            
+            {repos.length > 0 && (
+              <div className={styles.reposSection}>
+                <h3>Top Repositories</h3>
+                <ul className={styles.reposList}>
+                  {repos.map(repo => (
+                    <li key={repo.id} className={styles.repoItem}>
+                      <a 
+                        href={repo.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {repo.name}
+                      </a>
+                      <p>{repo.description || 'No description'}</p>
+                      <div className={styles.repoStats}>
+                        <span>⭐ {repo.stargazers_count}</span>
+                        <span>🍴 {repo.forks_count}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-          
-          <ul className={styles.stats}>
-            <li>Followers: {profile.followers}</li>
-            <li>Following: {profile.following}</li>
-            <li>Public repos: {profile.public_repos}</li>
-            <li className={styles.profileBtn}>
-              <a 
-                href={profile.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Profile
-              </a>
-            </li>
-          </ul>
-          
-          {repos.length > 0 && (
-            <div className={styles.reposSection}>
-              <h3>Top Repositories</h3>
-              <ul className={styles.reposList}>
-                {repos.map(repo => (
-                  <li key={repo.id} className={styles.repoItem}>
-                    <a 
-                      href={repo.html_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {repo.name}
-                    </a>
-                    <p>{repo.description || 'No description'}</p>
-                    <div className={styles.repoStats}>
-                      <span>⭐ {repo.stargazers_count}</span>
-                      <span>🍴 {repo.forks_count}</span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      )}
+        )}
       </section>
     </div>
   );
